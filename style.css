@@ -1,0 +1,990 @@
+/* ============================================
+   Globalna podešavanja
+   ============================================ */
+
+/* Uključuje padding i marginu unutar dimenzija elemenata */
+* {
+  box-sizing: border-box;
+}
+
+/* Osnovne postavke html elementa: 
+   font-size na 62.5% radi lakše konverzije rem jedinica (1rem = 10px),
+   visina automatski prilagođena sadržaju */
+html {
+  font-size: 62.5%;
+  height: auto;
+}
+
+/* ============================================
+   Telo stranice
+   ============================================ */
+
+/* Podešavanje osnovnih boja, fonta i border gradijenta */
+body {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  color: #ffffff; /* tekst je beo */
+  background: #000000; /* pozadina je crna */
+  border-style: solid;
+  border-width: 3px 0; /* gornja i donja ivica */
+  border-image: linear-gradient(135deg, #c61f8a 0%, #ff8ced 32%, #ffa800 65%, #ff3c21 93%) 1; /* gradijent na ivicama */
+  /* overflow: hidden; */ /* po potrebi sakrije overflow */
+  font-family: "PT Sans Caption", sans-serif; /* glavni font */
+}
+
+/* Kontejner koji obavija sav sadržaj */
+.container {
+  width: 100%;
+  height: auto;
+  background-color: #000000; /* crna pozadina unutar kontejnera */
+}
+
+/* Wrapper za centriranje sa marginom auto */
+.wrapper {
+  width: 95%;
+  margin: auto;
+}
+
+/* Glavni tekstualni blok */
+.main {
+  font-size: 1.8rem; /* osnovna veličina fonta */
+  height: auto;
+}
+
+/* Responsivno povećavanje fonta .main na većim ekranima */
+@media screen and (min-width: 576px) {
+  .main {
+    font-size: 1.8rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .main {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .main {
+    font-size: 2.2rem;
+  }
+}
+
+/* ============================================
+   Linkovi i skrivanje elemenata
+   ============================================ */
+
+/* Link nasledjuje boju roditelja i nema podvlačenje */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Klasa za potpuno skrivanje elementa */
+.hidden {
+  display: none;
+}
+
+/* Osnovni stil za dugme */
+.btn {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 2.4rem;
+}
+/* Fokus stanje dugmeta */
+.btn:focus {
+  outline: #c61f8a auto 1px;
+}
+
+/* ============================================
+   Header i navigacija
+   ============================================ */
+
+/* Header deo sa fleks rasporedom i poravnanjem ka desno */
+header {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 3.2rem;
+  font-size: 1.8rem;
+}
+
+/* Animirani logo efekt kucanja */
+.logotype {
+  position: absolute;
+  left: 0;
+  margin: 0 auto;
+  border-right: 0.5em solid transparent;
+  white-space: nowrap;
+  -webkit-animation: typing 1.6s steps(16, end) 1s, blinking-cursor 0.6s step-end infinite 1s;
+          animation: typing 1.6s steps(16, end) 1s, blinking-cursor 0.6s step-end infinite 1s;
+}
+
+/* Keyframes za animaciju "kucanja" */
+@-webkit-keyframes typing { from { width: 0; } to { width: 130px; } }
+@keyframes typing       { from { width: 0; } to { width: 130px; } }
+
+/* Keyframes za treptanje kursora */
+@-webkit-keyframes blinking-cursor { from, to { border-color: transparent; } 50% { border-color: #c61f8a; } }
+@keyframes blinking-cursor          { from, to { border-color: transparent; } 50% { border-color: #c61f8a; } }
+
+/* Sakrivanje tastera menija na velikim ekranima */
+@media screen and (min-width: 992px) {
+  .menu-btn {
+    display: none;
+  }
+}
+
+/* Padajuća navigacija za manje ekrane */
+.navigation {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 1.6rem;
+  padding: 1em 0;
+  border: 1px #c61f8a;
+  border-style: solid none;
+  background-color: #000000;
+}
+/* Prikaz navigacije u liniji na velikim ekranima */
+@media screen and (min-width: 992px) {
+  .navigation {
+    position: relative;
+    display: block;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Pojedinačni stavke menija */
+.nav__item {
+  margin: 1em;
+  text-align: center;
+}
+@media screen and (min-width: 992px) {
+  .nav {
+    display: flex;
+  }
+  .nav__item {
+    margin: 0;
+  }
+  .nav__item:not(:last-child) {
+    margin-right: 0.8em;
+  }
+}
+
+/* Hover efekat za link u meniju: donja linija gradijent */
+.nav__link:hover {
+  background: linear-gradient(to right, #c61f8a 35%, #ff3c21 65%, #ffa800 93%) left bottom no-repeat;
+  background-size: 100% 3px;
+}
+
+/* Sakrivanje span sadržaja za mobilne uređaje */
+@media screen and (max-width: 576px) {
+  .nav__link span {
+    display: none;
+  }
+  .nav__link span img {
+    display: none;
+  }
+  .nav__link:hover span {
+    display: none;
+  }
+}
+
+/* Tooltip stil za span unutar linka */
+.nav__link span {
+  display: none;
+  border-radius: 6px;
+  color: black;
+  background: white; 
+}
+/* Dimenzije slike unutar tooltipa */
+.nav__link span img {
+  width: 300px;
+}
+/* Prikaz tooltipa pri hover-u */
+.nav__link:hover span {
+  display: block;
+  margin-top: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: auto;
+  max-width: 320px;
+  min-height: 128px;
+  border: 1px solid black;
+  overflow: hidden;
+  padding: 3px;
+}
+
+/* ============================================
+   "Prozor" (console-like) komponenta
+   ============================================ */
+
+/* Spoljašnji okvir prozora */
+.window {
+  margin: 2rem auto 0;
+  min-height: 163px;
+  max-width: 548px;
+  border: 3px solid #090b15;
+  /* height: 450px !important; */
+}
+/* Veliki ekrani: širi prozor */
+@media screen and (min-width: 992px) {
+  .window {
+    max-width: 60%;
+    height: auto;
+  }
+}
+
+/* Zaglavlje prozora sa "tackicama" */
+.window__options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  border-bottom: 2px solid #090b15;
+}
+.window__options .dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.window__options .dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #c61f8a;
+}
+.window__options .dot--middle {
+  background-color: #ff3c21;
+}
+.window__options .dot--left {
+  background-color: #ffa800;
+}
+/* Ikonica za osvežavanje */
+.window__options .refresh {
+  color: #48569e;
+  font-size: 1.8rem;
+  display: block;
+}
+
+/* Telo prozora: lista i linije "console" stila */
+.window__body {
+  padding: 1.8rem 1.2rem;
+  line-height: 1.3;
+}
+.window__body li:before {
+  content: ">";
+  padding-right: 0.6em;
+}
+.window__body .line {
+  margin-bottom: 1.3rem;
+}
+.window__body .line.console {
+  color: #48569e;
+  word-break: break-all;
+}
+
+/* Uputstvo ispod prozora */
+.instruction {
+  margin-top: 1.6rem;
+  font-size: 12px;
+  color: #48569e;
+  text-align: center;
+}
+/* Sakriva se na ekranima užim od 991px */
+@media screen and (max-width: 991px) {
+  .instruction {
+    display: none;
+  }
+}
+/* Posebna mobilna poruka (trenutno sakrivena) */
+.instruction.mobile {
+  display: none;
+}
+
+/* ============================================
+   Terminal komponenta
+   ============================================ */
+
+/* Stil tekstualnog izlaza terminala */
+.terminal {
+  font-family: "Ubuntu Mono", monospace;
+  color: #bbbbbb;
+  font-size: 16px;
+  font-weight: 100;
+  overflow-y: auto;
+  height: 380px !important;
+}
+/* Unos u terminalu (skriven tekst, ali vidljiv _webkit-text-fill-color-om) */
+.terminal-input {
+  background: rgba(0, 0, 0, 0);
+  font-family: monospace;
+  color: transparent;
+  font-size: 14px;
+  outline: none;
+  border: none;
+  -webkit-text-fill-color: #bbbbbb;
+}
+/* Različite boje za različite linije */
+.terminal-purple { color: #5050f2; }
+.console-line     { color: #00b200; }
+.login-line       { color: #fff; }
+/* Blinking kursorska strelica */
+.console-carrot {
+  vertical-align: middle;
+  background: #00ff00;
+  height: 15px;
+  width: 8px;
+  margin-left: -7px;
+  display: inline-block;
+  -webkit-animation: blink 1s step-start 0s infinite;
+          animation: blink 1s step-start 0s infinite;
+}
+/* Selekcija teksta */
+::-moz-selection { background-color: #fff; color: #000; }
+::selection       { background-color: #fff; color: #000; }
+/* Blinking keyframes za terminal */
+@-webkit-keyframes blink { 50% { opacity: 0; } }
+@keyframes blink          { 50% { opacity: 0; } }
+
+/* Sakrij specifičnu sliku na uređajima užim od 629px */
+@media (max-width:629px) {
+  img#dragan {
+    display: none;
+  }
+}
+
+/* Tekst "word" ispod prozora */
+#word {
+  font-size: 5px;
+  color: #48569e;
+  text-align: center;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   Drugi deo sajta: moderna sekcija i forme
+   ============================================ */
+
+/* Definicija CSS promenljivih za lakši dizajn */
+:root {
+  --primary-color: #48569e;
+  --secondary-color: #c61f8a;
+  --text-color: #ffffff;
+  --background-color: #000000;
+  --font-main: 'PT Sans Caption', sans-serif;
+  --font-size-base: 1.6rem;
+  --spacing-unit: 1rem;
+  --border-radius: 0.4rem;
+  --transition-speed: 0.3s;
+}
+
+/* Grid raspored sekcija koji se prilagođava širini ekrana */
+.modern-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: calc(var(--spacing-unit) * 2);
+  padding: calc(var(--spacing-unit) * 4);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+}
+
+/* Zaglavlje svake sekcije (naslov i podnaslov) */
+.section-header {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+.main-heading {
+  font-size: 2.6rem;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0.7rem;
+}
+.subtitle {
+  font-size: 2.6rem;
+  color: var(--secondary-color);
+  font-weight: 300;
+}
+
+/* Sekcija "O meni" sa hover efektom podizanja */
+.about-me {
+  background: rgba(72, 86, 158, 0.1);
+  padding: calc(var(--spacing-unit) * 2);
+  border-radius: var(--border-radius);
+  transition: transform var(--transition-speed);
+}
+.about-me:hover {
+  transform: translateY(-5px);
+}
+
+/* Sekcija sa veštinama (skills) */
+.skills {
+  background: rgba(198, 31, 138, 0.1);
+  padding: calc(var(--spacing-unit) * 2);
+  border-radius: var(--border-radius);
+}
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-unit);
+}
+.skills-list li {
+  background: var(--primary-color);
+  padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed);
+}
+.skills-list li:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Projekti: kartice projekata koje se skaliraju i dobijaju senku */
+.projects {
+  grid-column: 1 / -1;
+}
+.project-card {
+  background: rgba(72, 86, 158, 0.1);
+  padding: calc(var(--spacing-unit) * 2);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-unit);
+  transition: all var(--transition-speed);
+}
+.project-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+/* Link unutar projekta */
+.project-link {
+  display: inline-block;
+  padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
+  background: var(--primary-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed);
+}
+.project-link:hover {
+  background-color: var(--secondary-color);
+}
+
+/* ============================================
+   Kontakt forma
+   ============================================ */
+
+/* Glavni kontejner za formu */
+.contact-form {
+  width: 80%;
+  max-width: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-form form {
+  width: 100%;
+}
+/* Grupe i polja forme */
+.contact-form .form-group,
+.contact-form input,
+.contact-form textarea {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* Raspored slike i forme */
+.contact-form-container {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+  width: 100%;
+}
+.contact-image, .contact-form-content {
+  flex: 1 1 0;
+  max-width: 80%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Stil slike u formi */
+.contact-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem 0;
+}
+.contact-image img {
+  display: block;
+  margin: auto;
+  max-width: 320px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+/* Sadržaj forme */
+.contact-form-content {
+  padding: 2rem 0;
+  justify-content: center;
+  align-items: center;
+}
+.contact-form-content form,
+.contact-form-content > * {
+  width: 100%;
+  max-width: 350px;
+}
+/* Labela i input/textarea */
+.form-group {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-size: 1.6rem;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #c61f8a;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 1.6rem;
+}
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+/* Fokus inputa i textarea */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ff3c21;
+  box-shadow: 0 0 5px rgba(255, 60, 33, 0.5);
+}
+/* Dugme za slanje */
+.submit-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #c61f8a 0%, #ff3c21 100%);
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(198, 31, 138, 0.3);
+}
+/* Naslov forme */
+.contact-form h2 {
+  color: #c61f8a;
+  margin-bottom: 2rem;
+  font-size: 2.4rem;
+  text-align: center;
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+/* Responsivno za kontakt formu na manjim ekranima */
+@media (max-width: 900px) {
+  .contact-form {
+    width: 98%;
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+  .contact-form-container {
+    flex-direction: column;
+  }
+  .contact-image, .contact-form-content {
+    max-width: 100%;
+    padding: 1rem 0;
+    align-items: center;
+  }
+  .contact-image {
+    margin-bottom: 1.5rem;
+  }
+  .contact-form-content form,
+  .contact-form-content > * {
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   Dodatno: responsivni raspored i animacije
+   ============================================ */
+
+/* Jednokolonski grid na uređajima užim od 768px */
+@media screen and (max-width: 768px) {
+  .modern-section {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-unit);
+  }
+  .main-heading {
+    font-size: calc(var(--font-size-base) * 2);
+  }
+}
+
+/* FadeIn animacija elemenata unutar moderne sekcije */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Primena fadeIn sa odloženjem za redom */
+.modern-section > * {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.modern-section > *:nth-child(2) { animation-delay: 0.2s; }
+.modern-section > *:nth-child(3) { animation-delay: 0.4s; }
+.modern-section > *:nth-child(4) { animation-delay: 0.6s; }
+.modern-section > *:nth-child(5) { animation-delay: 0.8s; }
+
+/* ============================================
+   Moderna navigacija (dodatak)
+   ============================================ */
+
+.main-nav {
+  background: #000;
+  box-shadow: 0 2px 8px 0 rgba(72,86,158,0.08);
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  width: 100%;
+  justify-content: center;
+}
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2rem;
+  transition: background 0.2s, color 0.2s;
+}
+.main-nav a:hover,
+.main-nav a:focus {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+/* Kontejner za sekcije sajta:
+   koristi CSS Grid za raspored u dve kolone,
+   međuprostor (gap) između ćelija 2rem,
+   unutrašnji razmak (padding) 2rem horizontalno i 4rem vertikalno,
+   bez pozadinske boje (transparentno),
+   koristi definisane varijable za boju teksta i font,
+   maksimalna širina 1200px i centriranje sa marginama. */
+   .modern-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem 2vw 4rem 2vw;
+    background: none;
+    color: var(--text-color);
+    font-family: var(--font-main);
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+  }
+  
+  /* Zaglavlje sekcije zauzima sve kolone:
+     centriran tekst i donja margina od 2rem. */
+  .section-header {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* Glavni naslov sekcije:
+     veličina fonta 4rem, boja primarna,
+     mala donja margina, sva slova velika,
+     razmak između slova 0.12em, podebljano. */
+  .main-heading {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+  }
+  
+  /* Podnaslov sekcije:
+     prikazuje se u novom redu,
+     font 1.1rem, sekundarna boja,
+     normalna debljina fonta, gornja margina 0.5rem,
+     razmak između slova 0.05em. */
+  .main-sub {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    font-weight: 400;
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  
+  /* ===================== */
+  /* About & Skills        */
+  /* ===================== */
+  
+  /* O meni i Veštine:
+     pozadina je poluprovidna obojena,
+     zaobljeni uglovi 1rem,
+     unutrašnji razmak 2rem x 1.5rem,
+     blagi box-shadow za podizanje elemenata,
+     osnovna veličina fonta 1.1rem. */
+  .about-me, .skills {
+    background: rgba(72,86,158,0.12);
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 2px 12px 0 rgba(72,86,158,0.08);
+    font-size: 1.1rem;
+  }
+  
+  /* Pozicija .about-me u prvoj koloni */
+  .about-me {
+    grid-column: 1 / 2;
+  }
+  
+  /* Pozicija .skills u drugoj koloni
+     i drugačija nijansa pozadine */
+  .skills {
+    grid-column: 2 / 3;
+    background: rgba(198,31,138,0.10);
+  }
+  
+  /* Lista veština: fleks-kontejner, prelamanje,
+     razmak između stavki 0.7rem, bez uvlaka (list-style). */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Stavka liste veština:
+     primarna boja pozadine, bela boja teksta,
+     unutrašnji razmak 0.4rem x 1.1rem,
+     zaobljeni rubovi 1.2rem,
+     font 1rem, srednje podebljano,
+     glatka tranzicija promena pozadine. */
+  .skills-list li {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.4rem 1.1rem;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  
+  /* Hover efekat za stavku veština: prelazak na sekundarnu boju */
+  .skills-list li:hover {
+    background: var(--secondary-color);
+  }
+  
+  /* ===================== */
+  /* Projects              */
+  /* ===================== */
+  
+  /* Sekcija projekata zauzima sve kolone,
+     svetlija poluprovidna pozadina,
+     zaobljeni uglovi 1rem,
+     unutrašnji razmak komponenta i margina,
+     blagi box-shadow za izdvajanje. */
+  .projects {
+    grid-column: 1 / -1;
+    background: rgba(72,86,158,0.10);
+    border-radius: 1rem;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 12px 0 rgba(72,86,158,0.08);
+  }
+  
+  /* Naslov unutar projekata sa donjom marginom */
+  .projects h2 {
+    margin-bottom: 1rem;
+  }
+  
+  /* Kartica projekta:
+     svetlija pozadina, blago zaobljeni uglovi,
+     padding i razmak između kartica,
+     blagi box-shadow i glatke tranzicije transformišu animaciju. */
+  .project-card {
+    background: rgba(72,86,158,0.13);
+    border-radius: 0.7rem;
+    padding: 1rem 1.5rem 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 6px 0 rgba(72,86,158,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Hover efekat na kartici:
+     malo podiže i uvećava karticu i pojačava senku */
+  .project-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 6px 24px 0 rgba(198,31,138,0.13);
+  }
+  
+  /* Link na projekat:
+     inline-block, gornja margina, padding,
+     primarna boja pozadine, bela boja teksta,
+     zaobljeni rubovi, podebljano i font 1rem,
+     glatka tranzicija pozadine. */
+  .project-link {
+    display: inline-block;
+    margin-top: 0.7rem;
+    padding: 0.4rem 1.2rem;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 1.2rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s;
+  }
+  
+  /* Hover efekat na link: prelazak na sekundarnu boju */
+  .project-link:hover {
+    background: var(--secondary-color);
+  }
+  
+  /* ===================== */
+  /* FOOTER                */
+  /* ===================== */
+  
+  /* Footer deo sajta:
+     puna širina, crna pozadina,
+     svetlosiva boja teksta, centriran tekst,
+     vertikalni padding, font 1rem,
+     razmak između slova 0.04em,
+     gornji border u primarnoj boji i margina. */
+  .site-footer {
+    width: 100%;
+    background: #000;
+    color: #bbb;
+    text-align: center;
+    padding: 1.2rem 0 1.5rem 0;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--primary-color);
+    margin-top: 2rem;
+  }
+  
+  /* ===================== */
+  /* RESPONSIVE DESIGN     */
+  /* ===================== */
+  
+  /* Za ekrane uže od 900px:
+     jedna kolona u modern-section,
+     padding i razmaci prilagođeni,
+     about-me i skills zauzimaju celu širinu,
+     kontakt forma u jednoj koloni,
+     slika u formi sakrivena. */
+  @media (max-width: 900px) {
+    .modern-section {
+      grid-template-columns: 1fr;
+      padding: 1.2rem 1vw 2rem 1vw;
+    }
+    .about-me, .skills {
+      grid-column: 1 / -1;
+    }
+    .contact-form {
+      grid-template-columns: 1fr;
+    }
+    .contact-image {
+      display: none;
+    }
+  }
+  
+  /* Za ekrane užeg od 600px:
+     smanjuje font glavnog naslova,
+     prilagođava padding i gap u modern-section,
+     smanjuje padding svih sekcija i forme,
+     smanjuje razmake u glavnoj navigaciji,
+     i font/padding za linkove. */
+  @media (max-width: 600px) {
+    .main-heading {
+      font-size: 1.3rem;
+    }
+    .modern-section {
+      padding: 0.5rem 0.5vw 1.5rem 0.5vw;
+      gap: 1rem;
+    }
+    .about-me, .skills, .projects, .contact-form {
+      padding: 1rem 0.5rem;
+    }
+    .main-nav ul {
+      gap: 0.7rem;
+    }
+    .main-nav a {
+      font-size: 1rem;
+      padding: 0.4rem 0.7rem;
+    }
+  }
+  
+  /* Prisiljava monospace font za celu modern-section i navigaciju */
+  .modern-section, .modern-section * {
+    font-family: 'Ubuntu Mono', monospace !important;
+  }
+  .main-nav, .main-nav * {
+    font-family: 'Ubuntu Mono', monospace !important;
+  }
+  
+  /* Dodatna prilagođavanja font-size-a za ponovnu preciznost */
+  .main-heading { font-size: 4rem; }
+  .main-sub     { font-size: 2rem; }
+  .section-header { margin-bottom: 1.2rem; }
+  .about-me, .skills, .projects, .contact-form { font-size: 1.08rem; }
+  .main-nav a   { font-size: 1.08rem; }
+  .site-footer  { font-family: 'Ubuntu Mono', monospace !important; font-size: 1.05rem; }
+  
+  /* Globalno podešavanje osnovnog font-size-a za razne elemente */
+  body, .about-me, .skills, .projects, .contact-form,
+  .contact-form *, .site-footer, .main-nav a,
+  .form-group label, .form-group input, .form-group textarea,
+  .project-card, .skills-list li, .instruction, #word {
+    font-size: 1.6rem;
+  }
