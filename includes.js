@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", nav.init);
 //Current line
 var CurrentId = undefined;
 var hostname = "debian";
-var username = 'user';
+var username = 'codebycomtrade';
 var folder = '~';
 
 //print greetings
