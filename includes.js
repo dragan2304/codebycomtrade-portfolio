@@ -176,6 +176,7 @@ function ExecuteLine(command) {
 	    $("#Terminal").append('A star (*) next to a name means that the command is disabled.<br/>');
 	    $("#Terminal").append('cd [dir] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change directory<br/>');
 	    $("#Terminal").append('clear &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Clear console screen<br/>');
+	    $("#Terminal").append('date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Display current date and time<br/>');
 	    $("#Terminal").append('echo [arg...] &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Echo text back in console<br/>');
 	    $("#Terminal").append('pwd &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Prints name of the present/current working directory<br/>');
 	    $("#Terminal").append('ls &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  List files and directories<br/>');
@@ -254,6 +255,22 @@ else if (CurrentCommand == 'education' || CurrentCommand == 'certificates') {
     else if (CurrentCommand == 'uname -r') {
       $("#Terminal").append('3.10.0-1160.49.1.el7.x86_64<br/>'); }
       
+    //date command
+    else if (CurrentCommand == 'date') {
+      const now = new Date();
+      const options = { 
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      };
+      const formattedDate = now.toLocaleString('en-US', options);
+      $("#Terminal").append(formattedDate + '<br/>');
+    }
       
     //matrix
     else if (CurrentCommand == 'matrix') {
