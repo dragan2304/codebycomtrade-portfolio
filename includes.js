@@ -366,7 +366,7 @@ function ExecuteLine(command) {
     }
     // cv
     else if (CurrentCommand == "cv") {
-      window.open("/docs/dragan_cv.pdf");
+      window.open("./docs/dragan_cv.pdf");
       $("#Terminal").append(
         'CV opened in new window <i class="fas fa-external-link-alt"></i><br/>'
       );
