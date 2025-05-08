@@ -94,9 +94,12 @@ $(document).on("keydown", function (e) {
   }
 });
 
-// focus terminal on mouse click
+// focus terminal on mouse click - only for terminal area
 $(document).on("click", function (e) {
-  $("#" + CurrentId + " input").focus();
+  // Check if click is within terminal area
+  if ($(e.target).closest('.window').length > 0) {
+    $("#" + CurrentId + " input").focus();
+  }
 });
 
 //new line
@@ -233,9 +236,6 @@ function ExecuteLine(command) {
       );
       $("#Terminal").append(
         "echo [arg...] &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Echo text back in console<br/>"
-      );
-      $("#Terminal").append(
-        "help &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Display current date and time<br/>"
       );
       $("#Terminal").append(
         "pwd &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Prints name of the present/current working directory<br/>"
