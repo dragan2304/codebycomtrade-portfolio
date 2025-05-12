@@ -747,36 +747,75 @@ header {
    ============================================ */
 
 .main-nav {
-  background: #000;
-  box-shadow: 0 2px 8px 0 rgba(72, 86, 158, 0.08);
-  padding: 0.5rem 0;
-  margin-bottom: 2rem;
-  margin-top: 0;
+  background: rgba(72, 86, 158, 0.1);
+  box-shadow: 0 4px 15px rgba(72, 86, 158, 0.15);
+  padding: 1rem 0;
+  margin: 2rem 0;
   width: 100%;
   justify-content: center;
+  border-radius: 1rem;
+  border: 1px solid rgba(72, 86, 158, 0.2);
+  backdrop-filter: blur(5px);
 }
+
 .main-nav ul {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .main-nav a {
   color: var(--primary-color);
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  padding: 0.5rem 1.2rem;
-  border-radius: 2rem;
-  transition: background 0.2s, color 0.2s;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: rgba(72, 86, 158, 0.05);
+  border: 1px solid rgba(72, 86, 158, 0.1);
 }
+
 .main-nav a:hover,
 .main-nav a:focus {
   background: var(--secondary-color);
   color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(198, 31, 138, 0.3);
+  border-color: var(--secondary-color);
+}
+
+.main-nav a:active {
+  transform: translateY(0);
+}
+
+/* Responsivno za navigaciju */
+@media (max-width: 768px) {
+  .main-nav ul {
+    gap: 1.5rem;
+  }
+  
+  .main-nav a {
+    font-size: 1.4rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-nav ul {
+    gap: 0.8rem;
+  }
+  
+  .main-nav a {
+    font-size: 1.2rem;
+    padding: 0.5rem 0.8rem;
+  }
 }
 
 /* Kontejner za sekcije sajta:
@@ -1091,4 +1130,66 @@ body,
 .instruction,
 #word {
   font-size: 1.6rem;
+}
+
+/* ============================================
+   Nova kontakt sekcija
+   ============================================ */
+
+.contact-section {
+  grid-column: 1 / -1;
+  background: rgba(72, 86, 158, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.contact-container {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.contact-img {
+  max-width: 100%;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.contact-image:hover .contact-img {
+  transform: scale(1.05) rotate(2deg);
+  filter: drop-shadow(0 0 10px rgba(198, 31, 138, 0.3));
+}
+
+.contact-form {
+  flex: 1;
+  max-width: 500px;
+}
+
+/* Responsivno za kontakt sekciju */
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .contact-image {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .contact-form {
+    width: 100%;
+  }
 }
