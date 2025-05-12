@@ -361,7 +361,7 @@ function ExecuteLine(command) {
     // resume
     else if (CurrentCommand == "resume") {
       $("#Terminal").append(
-        '<a href="/docs/dragan_cv.pdf" download="Dragan_CV"><u>Click here</u></a> to download my CV or type cv to open it in new window.<br/>'
+        '<a href="./docs/dragan_cv.pdf" download="Dragan_CV"><u>Click here</u></a> to download my CV or type cv to open it in new window.<br/>'
       );
     }
     // cv
